@@ -1,0 +1,204 @@
+<!DOCTYPE HTML>
+<html lang="en-us">
+	<head>
+		<meta charset="UTF-8">
+
+		<title>Mesquinstagram</title>
+		
+		<!-- bootstrap - link cdn -->
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+	
+		<link href="/css/style.css" rel="stylesheet">
+	</head>
+
+	<body class="bg-color-really-light-grey">
+
+		<div class="container home">
+            <div class="row">
+                <div class="col-md-2"></div>
+                
+                <div class="col-md-4">
+                	<img src="/images/celulares.jpg" class="img-responsive img-center"/>
+                </div>
+                
+                <div class="col-md-4 panel-login">
+					<div class="panel panel-default">
+						<div class="panel-body">
+							<div class="row">
+								<div class="col-md-12">
+
+									<img src="/images/logo-large.jpg" class="img-responsive img-center" />
+									<br />
+
+									<%
+
+										var displayFormLogin = '';
+										var displayFormCreateUser = 'display: none;';
+										if(showForm != undefined){
+
+											if(showForm.form == 'create'){
+												displayFormCreateUser = '';
+												displayFormLogin = 'display: none;';
+											}
+										}
+
+										if(errors.length > 0){
+
+											var userError = false;
+											var passwordError = false;
+
+											for(var i=0; i < errors.length; i++){
+
+												if(errors[i].param == 'user')
+													userError = true;
+
+												else if(errors[i].param == 'password')
+													passwordError = true;
+											}
+										}
+									%>
+
+									<form action="/login" method="post" id="formLoginUser" style="<%= displayFormLogin%>">
+										<div class="form-group">
+											<input value="<%= formData.user %>" type="text" name="user" id="loginUser" class="form-control" placeholder="Username">
+											<%
+												if(userError != undefined && userError){
+											%>
+												<p class="error">Provide a username</p>
+											<%
+												}
+											%>
+
+										</div>
+
+										<div class="form-group">
+											<input value="<%= formData.password %>" type="password" name="password" id="loginPassword" class="form-control" placeholder="Password">
+											<%
+												if(passwordError != undefined && passwordError){
+											%>
+												<p class="error">Provide a password</p>
+											<%
+												}
+											%>
+										</div>
+
+										<div class="form-group">
+											<button class="btn btn-primary btn-login" id="btnJoin">Join</button>
+										</div>
+
+										<div class="row">
+
+											<div class="col-sm-6 col-sm-offset-3 text-align-center bold border-top-grey">
+											    <p class="margin-top-5px margin-bot-0">OR</p>
+											</div>
+
+										</div>
+
+										<div class="form-group">
+											<div class="row">
+												<div class="col-lg-12">
+													<div class="text-center">
+														<a href="javascript:void(0);" id="btnCreateAccount">Create new account</a>
+													</div>
+												</div>
+											</div>
+										</div>
+
+										<div class="row">
+											<div class="col-sm-6 col-sm-offset-3 text-align-center bold border-top-grey">
+											    <p class="margin-top-5px margin-bot-0">OR</p>
+											</div>
+										</div>
+
+										<div class="form-group">
+											<div class="row">
+												<div class="col-lg-12">
+													<div class="text-center">
+														<a href="/home">Just Visit</a>
+													</div>
+												</div>
+											</div>
+										</div>
+
+									</form>
+
+									<form action="/create-user" method="post" id="formCreateUser" style="<%= displayFormCreateUser%>">
+										<div class="form-group">
+											<input value="<%= formData.user %>" type="text" name="user" id="createUser" class="form-control" placeholder="Username">
+											<%
+												if(userError != undefined && userError){
+											%>
+												<p class="error">Provide a username</p>
+											<%
+												}
+											%>
+
+										</div>
+
+										<div class="form-group">
+											<input value="<%= formData.password %>" type="password" name="password" id="createPassword" class="form-control" placeholder="Password">
+											<%
+												if(passwordError != undefined && passwordError){
+											%>
+												<p class="error">Provide a password</p>
+											<%
+												}
+											%>
+										</div>
+
+										<div class="form-group">
+											<button class="btn btn-success btn-login" id="btnJoin">Create</button>
+										</div>
+
+										<div class="row">
+
+											<div class="col-sm-6 col-sm-offset-3 text-align-center bold border-top-grey">
+											    <p class="margin-top-5px margin-bot-0">OR</p>
+											</div>
+
+										</div>
+
+										<div class="form-group">
+											<div class="row">
+												<div class="col-lg-12">
+													<div class="text-center">
+														<a href="javascript:void(0);" id="btnSignUp">Sign Up</a>
+													</div>
+												</div>
+											</div>
+										</div>
+
+										<div class="row">
+											<div class="col-sm-6 col-sm-offset-3 text-align-center bold border-top-grey">
+											    <p class="margin-top-5px margin-bot-0">OR</p>
+											</div>
+										</div>
+
+										<div class="form-group">
+											<div class="row">
+												<div class="col-lg-12">
+													<div class="text-center">
+														<a href="/home">Just Visit</a>
+													</div>
+												</div>
+											</div>
+										</div>
+
+									</form>
+								
+								</div>
+							</div>
+						</div>
+					</div>
+                </div>
+
+                <div class="col-md-2"></div>
+            </div>
+        </div>
+	</body>
+
+	<!-- Include JSs -->
+	<script src="http://code.jquery.com/jquery-3.1.1.min.js"></script>
+	<script src="/js/index.js"></script>
+
+</html>

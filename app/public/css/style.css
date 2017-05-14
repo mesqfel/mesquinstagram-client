@@ -1,0 +1,163 @@
+
+.img-center {
+	margin:0 auto;
+}
+
+.btn-primary{
+	background-color: #3897f0;
+	border-color: #3897f0;
+}
+
+.btn-login{
+	width: 100%;
+	font-weight: bold;
+}
+
+.panel-login{
+	padding-top: 60px;
+}
+
+.home{
+	padding-top: 30px;
+}
+
+.error{
+	color: red;
+}
+
+nav{
+	margin-bottom: 60px;
+}
+
+nav ul a  {
+	color: black;
+}
+
+nav div a img {
+	vertical-align: middle;
+	cursor: pointer;
+}
+
+.card-photo-header{
+	padding: 14px 20px;
+	font-weight: 500;
+}
+
+.card-photo-header > span{
+	margin-left: 5px;
+}
+
+.div-likes{
+	margin-bottom: 10px;
+}
+
+.div-likes > span {
+	margin-left: 5px;
+}
+
+.cursor-pointer{
+	cursor: pointer;
+}
+
+.icon-liked{
+	color: #f44336;
+}
+
+.div-input-comment{
+	margin-top: 0;
+}
+
+.div-single-comment{
+	margin-bottom: 5px;
+}
+
+.comment-author{
+	font-weight: 500;
+}
+
+.comment-content{
+	font-weight: 300;
+}
+
+.card .card-header{
+	font-weight: 500;
+	padding: 15px 24px;
+}
+
+.display-block{
+	display: block;
+}
+
+.display-inline{
+	display: inline;
+}
+
+.margin-bottom-10{
+	margin-bottom: 10px;
+}
+
+.icon-dislike{
+	color: #ef5350;
+}
+
+.text-align-center{
+	text-align: center;
+}
+
+.margin-top-10{
+	margin-top: 10px;
+}
+
+.margin-top-20{
+	margin-top: 20px;
+}
+
+.margin-top-100{
+	margin-top: 100px;
+}
+
+.valign-middle{
+	vertical-align: middle;
+}
+
+.avatar-rounded{
+	border-radius: 50%;
+	width: 30px; 
+	height: 30px;
+}
+
+.bold{
+	font-weight: bold;	
+}
+
+.border-top-grey{
+	border-top: 1px solid #e9e9e9;
+}
+
+.margin-top-5px{
+	margin-top: 5px;
+}
+
+.margin-bot-0{
+	margin-bottom: 0;
+}
+
+.modal-max-width{
+	max-width: 362px;
+}
+
+.bg-color-really-light-grey{
+	background: #FAFAFA;
+}
+
+.font-size-12px{
+	font-size: 12px;
+}
+
+.top-3px{
+	top: 3px;	
+}
+
+.position-relative{
+	position: relative;
+}

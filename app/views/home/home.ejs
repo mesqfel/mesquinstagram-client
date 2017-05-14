@@ -1,0 +1,191 @@
+<!DOCTYPE html> 
+<html lang="en-us">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0"/>
+	<title>Mesquinstagram</title>
+
+	<!--Import Google Icon Font-->
+	<link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+	<!-- Compiled and minified Materialize CSS -->
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.0/css/materialize.min.css">
+
+	<link href="/css/style.css" rel="stylesheet">
+
+</head>
+<body>
+
+	<% 
+		if(user != undefined && user.id){
+	%>
+		<input type="hidden" id="loggedUserId" value="<%=user.id%>">
+		<input type="hidden" id="loggedUserName" value="<%=user.name%>">
+		<input type="hidden" id="loggedUserAvatar" value="<%=user.avatar%>">
+	<%
+		}
+	%>
+
+	<nav class="white" role="navigation">
+		<div class="nav-wrapper container"><a id="logo-container" href="#" class="brand-logo"><img src="images/logo.jpg"></a>
+				<ul class="right hide-on-med-and-down">
+					<% 
+						if(user != undefined && user.id){
+					%>
+							<li class="tooltipped" data-position="bottom" data-delay="50" data-tooltip="Publish a Photo">
+								<a href="javascript:void(0);" class="show-publish-div"><i class="material-icons">photo_camera</i></a>
+							</li>
+
+							<form action="/logout" method="post" class="display-inline">
+								<li class="tooltipped" data-position="bottom" data-delay="50" data-tooltip="Logout">
+									<a href="javascript:void(0);" id="iconLogOut"><i class="material-icons">exit_to_app</i></a>
+								</li>
+								<input class="hide" type="submit">
+							</form>
+
+							<li class="tooltipped" data-position="bottom" data-delay="50" data-tooltip="Your profile photo">
+								<img class="valign-middle avatar-rounded" src="images/avatars/<%=user.avatar%>.jpg">
+							</li>
+
+					<%
+						}
+						else{
+					%>
+							<li><a href="javascript:void(0);" class="show-modal-login"><i class="material-icons">photo_camera</i></a></li>
+					<%					
+						}
+					%>
+
+				</ul>
+				<a href="#" class="show-publish-div button-collapse" style="color: black;"><i class="material-icons">photo_camera</i></a>
+		</div>
+	</nav>
+	
+	<div class="container">
+
+		<div id="sectionPublishPhoto" style="display:none">
+			
+			<div class="row">
+				<div class="col s12 m6 offset-m3">
+					<div class="card">
+
+						<div class="card-content card-header valign-wrapper">
+							<span class="valign">Publish a Photo</span>
+						</div>
+
+						<div class="card-action">
+							
+							<div class="file-field input-field">
+								<div class="btn">
+									<span>Select Photo</span>
+									<input type="file" name="file" id="file">
+								</div>
+
+								<div class="file-path-wrapper">
+									<input class="file-path validate" type="text">
+								</div>
+							</div>
+
+							<div class="input-field">
+								<input id="photoDescription" name = "title" type="text" class="validate">
+								<label for="photoDescription" class="">Say something about this...</label>
+							</div>
+
+							<a id="btnPublish" class="waves-effect waves-light btn blue lighten-2 display-block margin-bottom-10">Publish</a>
+							<a id="btnCancel" class="waves-effect waves-light btn red lighten-2 display-block">Not now, back to home</a>
+
+						</div>
+
+					</div>
+				</div>
+			</div>
+
+		</div>
+
+		<div id="sectionTimeline">
+			
+			<!-- Loading animation -->
+			<div class="row text-align-center" id="divLoading">
+				<div class="col s12 m6 offset-m3 margin-top-100">
+					<div class="preloader-wrapper big active">
+						<div class="spinner-layer spinner-blue-only">
+							<div class="circle-clipper left">
+								<div class="circle"></div>
+							</div>
+							<div class="gap-patch">
+								<div class="circle"></div>
+							</div>
+							<div class="circle-clipper right">
+								<div class="circle"></div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+
+		</div>
+
+		<div id="divCreditsFelipe" class="row text-align-center" style="display: none;">
+			<div class="col s12 m6 offset-m3">
+				<p class="font-size-12px">
+					Made with <span class="top-3px position-relative"><i class="tiny material-icons" style="">favorite</i></span> by Felipe Mesquita
+				</p>
+			</div>
+		</div>
+
+	</div>
+
+
+	<div id="modalLogin" class="modal modal-max-width">
+		<div class="modal-content">
+
+			<div class="text-align-center">
+				<a href="/index/login" class="display-block waves-effect waves-light btn blue">Join</a>
+
+				<div class="margin-top-20">OR</div>
+
+				<div class="margin-top-10">
+					<a href="/index/create">Create new account</a>
+				</div>
+
+			</div>
+
+		</div>
+	</div>
+
+	<div id="modalErrorFileExtension" class="modal modal-max-width">
+		<div class="modal-content">
+
+			<div class="text-align-center">
+
+				<p class="bold error">Invalid File!</p>
+				<p>Only .jpg, .jpeg or .png files are allowed</p>
+				<p>Please choose another file</p>
+
+			</div>
+		</div>
+	</div>
+
+	<div id="modalErrorGeneric" class="modal modal-max-width">
+		<div class="modal-content">
+
+			<div class="text-align-center">
+
+				<p class="bold error">Oops... Something went wrong!</p>
+				<p>Please try again</p>
+
+			</div>
+		</div>
+	</div>
+
+</body>
+
+	<!-- Jquery -->
+	<script src="https://code.jquery.com/jquery-3.1.1.min.js" integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8=" crossorigin="anonymous"></script>
+
+	<!-- Compiled and minified materialize JavaScript -->
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.0/js/materialize.min.js"></script>
+
+	<script src="/js/home.js"></script>
+
+</html>
