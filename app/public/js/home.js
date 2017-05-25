@@ -69,7 +69,7 @@ $(document).ready(function(){
 									html += '</div>';
 
 									html += '<p>';
-										html += data[i].title;
+										html += stripTags(data[i].title);
 									html += '</p>';
 								html += '</div>';
 
@@ -88,7 +88,7 @@ $(document).ready(function(){
 											for(var j=0; j < data[i].comments.length; j++){
 												html += '<div class="div-single-comment">';
 													html += '<span class = "comment-author">'+data[i].comments[j].author+': </span>';
-													html += '<span class="comment-content">'+data[i].comments[j].comment+'</span>';
+													html += '<span class="comment-content">'+stripTags(data[i].comments[j].comment)+'</span>';
 												html += '</div>';
 											}
 										}
@@ -162,7 +162,7 @@ $(document).ready(function(){
 		var id = $(this).attr('value');
 		var elem = this;
 		var idInputComment = 'comment_'+id;
-		var _comment = $('#'+idInputComment).val();
+		var _comment = stripTags($('#'+idInputComment).val());
 
 		var xhr = new XMLHttpRequest();
 		xhr.open('PUT', 'http://localhost:3000/api/post/'+id+'/comment');
@@ -223,7 +223,7 @@ $(document).ready(function(){
 		//Create our formData
 		var formData = new FormData();
 		var file = document.getElementById('file').files[0];
-		var title = document.getElementById('photoDescription').value;
+		var title = stripTags(document.getElementById('photoDescription').value);
 		var user = $('#loggedUserName').val();
 		var avatar = $('#loggedUserAvatar').val();
 
@@ -307,7 +307,11 @@ $(document).ready(function(){
 		};
 	}
 
-
+	function stripTags(html){
+		var tmp = document.createElement("DIV");
+		tmp.innerHTML = html;
+		return tmp.textContent || tmp.innerText || "";
+	}
 	
 
 });
